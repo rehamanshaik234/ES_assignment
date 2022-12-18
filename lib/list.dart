@@ -24,6 +24,7 @@ class _ListDataState extends State<ListData> {
             itemBuilder: (context,index){
               final user= users[index];
                 String data=user['name']['first'];
+                String image=user["images"]["main"];
             return InkWell(
               onTap: (){
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>  LastPage( sayings: users,id: index,)));
@@ -31,7 +32,10 @@ class _ListDataState extends State<ListData> {
               child: ListTile(
                 title: Text(data==""? "No name": data,style: TextStyle(color: Colors.black),
                 ),
-                leading: Text((index+1).toString()),
+                leading: CircleAvatar(
+                  radius: 12,
+                  backgroundImage: NetworkImage(image),
+                ),
               ),
             );
           },
